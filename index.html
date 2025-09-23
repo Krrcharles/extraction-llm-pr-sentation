@@ -6,11 +6,11 @@
 <script src="extraction-llm-présentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="extraction-llm-présentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="extraction-llm-présentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="extraction-llm-présentation_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="extraction-llm-présentation_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="extraction-llm-présentation_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="extraction-llm-présentation_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="extraction-llm-présentation_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Charles CARRERE">
   <title>Extraction de Tableaux à l’aide de LLM Multimodaux</title>
@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="extraction-llm-présentation_files/libs/revealjs/dist/theme/quarto-7230c0af59ab1606bc2ed49e76979e8e.css">
+  <link rel="stylesheet" href="extraction-llm-présentation_files/libs/revealjs/dist/theme/quarto-ea8535d309a38c52e88d69daf30b07d0.css">
   <link rel="stylesheet" href="_extensions/InseeFrLab/onyxia/logo.css">
   <link rel="stylesheet" href="custom.css">
   <link href="extraction-llm-présentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -146,46 +146,16 @@ Charles CARRERE
 </div>
 </div>
 
-  <p class="date">27 août 2025</p>
+  <p class="date">23 septembre 2025</p>
 </section>
 <section>
 <section id="le-contexte-le-travail-de-profilage-à-linsee" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Le Contexte : le travail de profilage à l’INSEE</h1>
 
 </section>
-<section id="la-division-profilage-ptgu" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>La division Profilage (PTGU)</h2>
-<ul>
-<li>Le stage s’est déroulé au sein de la division « <strong>P</strong>rofilage et <strong>T</strong>raitement des <strong>G</strong>randes <strong>U</strong>nités ».</li>
-<li>Mission : <span class="orange"><strong>Consolider et analyser</strong></span> les structures des grands groupes d’entreprises.</li>
-<li>Le <strong>profilage</strong> vise à définir une <span class="blue2"><strong>entreprise</strong></span> au sens économique, et non plus seulement juridique (Unité Légale - UL).</li>
-</ul>
-</section>
-<section id="pourquoi-le-profilage-est-essentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Pourquoi le profilage est essentiel ?</h2>
-<p>Avant le profilage, l’agrégation simple des Unités Légales (UL) masquait la réalité économique :</p>
-<ul>
-<li>Les <span class="orange"><strong>flux intra-groupe</strong></span> pouvaient gonfler artificiellement le chiffre d’affaires agrégé.</li>
-<li>L’approche purement juridique créait des <span class="orange"><strong>ruptures de séries</strong></span> lors des restructurations.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<figcaption>source : insee.fr</figcaption>
-<p><a href="img/fluxintra.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="source : insee.fr"><img data-src="img/fluxintra.png" style="width:25.0%" alt="source : insee.fr"></a></p>
-</figure>
-</div>
-<p>L’objectif est de garantir la <span class="blue2"><strong>cohérence et la continuité</strong></span> des agrégats économiques.</p>
-</section>
-<section id="le-profilage-manuel-cible-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Le profilage manuel (Cible 1)</h2>
-<p>Pour les plus grands groupes (~60), le travail des profileurs est un processus en 5 étapes clés :</p>
-<ol type="1">
-<li>Sélection des UL et envoi de l’enquête ESA.</li>
-<li><span class="blue2"><strong>Collecte des périmètres</strong></span> via visites et échanges.</li>
-<li><span class="blue2"><strong>Construction des comptes consolidés</strong></span> (retraitements, ajustements bilanciels).</li>
-<li><span class="blue2"><strong>Contrôles de cohérence</strong></span> avec de multiples sources (liasses fiscales, rapports annuels…).</li>
-<li>Intégration dans la base Esane.</li>
-</ol>
+<section id="le-profilage-cest-quoi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Le profilage : c’est quoi ?</h2>
+<p>Le <span class="orange"><strong>profilage</strong></span> vise à définir une <span class="orange"><strong>entreprise</strong></span> au sens économique, et non plus seulement juridique (Unité Légale - UL). <a href="img/groupes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="source : formation crédit : Mhenni BEN YAALA"><img data-src="img/groupes.png" style="width:100.0%" alt="source : formation crédit : Mhenni BEN YAALA"></a></p>
 </section></section>
 <section>
 <section id="la-problématique-lextraction-du-tableau-filiales-et-participations" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -195,14 +165,8 @@ Charles CARRERE
 <section id="une-source-dinformation-cruciale" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Une source d’information cruciale</h2>
 <ul>
-<li>Au cœur des contrôles de cohérence se trouve le tableau “<strong>Filiales et Participations</strong>”.</li>
-<li>Il est essentiel pour <span class="orange"><strong>vérifier les contours des groupes</strong></span>.</li>
-<li>Aujourd’hui, son exploitation est <span class="orange"><strong>entièrement manuelle</strong></span> : le profileur lit le PDF et recopie les informations.</li>
+<li>La construction des contours repose en grande partie sur les <span class="orange"><strong>comptes sociaux</strong></span> dans le tableau”<strong>Filiales et Participations</strong>”.</li>
 </ul>
-</section>
-<section id="le-défi-technique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Le défi technique</h2>
-<p>L’automatisation de l’extraction est difficile car les documents sont très hétérogènes.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -219,7 +183,7 @@ Charles CARRERE
 </figure>
 </div>
 </div></div>
-<p>Le but est de passer <span class="blue2"><strong>automatiquement</strong></span> du document brut à une table de données propre.</p>
+<p>Le but est de passer <span class="orange"><strong>automatiquement</strong></span> du document brut à une table de données propre.</p>
 </section></section>
 <section>
 <section id="les-données-un-corpus-hétérogène" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -247,8 +211,8 @@ Charles CARRERE
 <p>Cette hétérogénéité rend les <span class="blue2"><strong>approches algorithmiques classiques peu robustes</strong></span>.</p>
 </section></section>
 <section>
-<section id="lapproche-précédente-une-méthode-séquentielle" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>L’approche précédente : une méthode séquentielle</h1>
+<section id="lapproche-précédente" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>L’approche précédente</h1>
 
 </section>
 <section id="le-pipeline" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -269,16 +233,33 @@ Charles CARRERE
 <h1>Rupture Technologique : Les LLMs</h1>
 
 </section>
-<section id="comment-un-llm-comprend-le-texte" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Comment un LLM “comprend” le texte ?</h2>
+<section id="un-point-de-départ-de-nlp" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Un point de départ de NLP</h2>
 <p>La première étape est de transformer les mots en nombres que le modèle peut manipuler.</p>
 <ol type="1">
-<li><p><span class="orange"><strong>Tokenisation</strong></span><br>
-Le texte est découpé en unités de base, les <em>tokens</em> (mots ou sous-mots). <code>"Extraire ce tableau"</code> ➡️ <code>["Extraire", "ce", "tableau"]</code></p></li>
-<li><p><span class="orange"><strong>Vectorisation (Embedding)</strong></span><br>
-Chaque token est associé à un vecteur numérique de grande dimension. Ce vecteur représente la <strong>position sémantique</strong> du token dans un espace de concepts. <code>"Extraire"</code> ➡️ <code>[0.12, -0.45, ..., 0.88]</code></p></li>
+<li><span class="orange"><strong>Tokenisation</strong></span><br>
+Le texte est découpé en unités de base, les <em>tokens</em> (mots ou sous-mots). <code>"Extraire ce tableau"</code> ➡️ <code>["Extraire", "ce", "tableau"]</code> <code>"anticonstitutionnel" ➡️ [anti][constitution][nel]</code></li>
 </ol>
+</section>
+<section id="un-point-de-départ-de-nlp-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Un point de départ de NLP</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ol start="2" type="1">
+<li><span class="orange"><strong>Vectorisation (Embedding)</strong></span></li>
+</ol>
+<p>Chaque token est associé à un vecteur numérique de grande dimension.<br>
+Ce vecteur représente la <strong>position sémantique</strong> du token dans un espace de concepts.</p>
+<p><code>"Extraire"</code> ➡️ <code>[0.12, -0.45, ..]</code></p>
 <p>Les mots aux significations proches auront des vecteurs proches dans cet espace.</p>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<figcaption>Source : Wikipedia Word2Vec (eng)</figcaption>
+<p><a href="img/Word_vector_illustration-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Source : Wikipedia Word2Vec (eng)"><img data-src="img/Word_vector_illustration-1.png" alt="Source : Wikipedia Word2Vec (eng)"></a></p>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="le-cœur-du-llm-larchitecture-transformer" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Le cœur du LLM : l’Architecture Transformer</h2>
@@ -292,11 +273,11 @@ Chaque token est associé à un vecteur numérique de grande dimension. Ce vecte
 <section id="du-llm-au-llm-multimodal" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Du LLM au LLM Multimodal</h2>
 <p>Comment apprendre à un modèle de langage à “voir” ?</p>
-<p>La réponse méthodologique : <span class="blue2"><strong>traiter l’image comme une séquence de tokens</strong></span>, de la même manière que le texte.</p>
+<p>La réponse méthodologique : <span class="orange"><strong>traiter l’image comme une séquence de tokens</strong></span>, de la même manière que le texte.</p>
 <ul>
-<li>On ne donne pas au modèle une grille de pixels, mais une séquence de <strong>“tokens visuels”</strong>.</li>
+<li>On ne donne pas au modèle une grille de pixels, mais une séquence de <span class="orange"><strong>“tokens visuels”</strong></span>.</li>
 <li>Chaque token visuel représente une petite zone de l’image.</li>
-<li>Le modèle peut alors appliquer son mécanisme d’attention sur une <strong>séquence mixte</strong> de tokens de texte et de tokens visuels.</li>
+<li>Le modèle peut alors appliquer son mécanisme d’attention sur une <span class="orange"><strong>séquence mixte</strong></span> de tokens de texte et de tokens visuels.</li>
 </ul>
 </section>
 <section id="la-tokenisation-visuelle-en-pratique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -312,13 +293,13 @@ Le LLM traite alors cette nouvelle <strong>séquence de tokens visuels</strong> 
 </ol>
 </section></section>
 <section>
-<section id="mon-approche-une-architecture-robuste-et-hybride" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Mon Approche : Une Architecture Robuste et Hybride</h1>
+<section id="pipeline-développé" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Pipeline développé</h1>
 
 </section>
-<section id="architecture-en-microservices" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Architecture en Microservices</h2>
-<p>Pour garantir la robustesse et la scalabilité, la solution est bâtie sur une architecture en 3 microservices.</p>
+<section id="architecture" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Architecture</h2>
+<p>La solution est bâtie sur une architecture en 3 API.</p>
 <!-- NOTE: Int&#xE9;grez ici votre sch&#xE9;ma d'architecture montrant API Centrale, API Marker, Proxy et les flux. -->
 <ul>
 <li><span class="orange"><strong>API Centrale</strong></span> : L’<strong>orchestrateur</strong> qui pilote le flux.</li>
@@ -370,20 +351,21 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
 <li>Taux d’extraction parfaite (tableau 100% correct) <span class="orange"><strong>*</strong></span></li>
 </ul></li>
 </ul>
+<p><span class="orange"><strong>*</strong></span> Métriques qui ont changé entre les projets et qui sont complexes à analyser</p>
 </section></section>
 <section>
 <section id="résultats" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Résultats</h1>
 
 </section>
-<section id="résultats-quantitatifs" class="slide level2 smaller" data-background-image="background.svg" data-background-size="contain">
-<h2>Résultats Quantitatifs</h2>
+<section id="résultats-bruts" class="slide level2 smaller" data-background-image="background.svg" data-background-size="contain">
+<h2>Résultats bruts</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Métrique</th>
-<th style="text-align: center;">M1 (Table Transformer)</th>
-<th style="text-align: center;"><strong>Approche LLM (Hybride)</strong></th>
+<th style="text-align: center;">Table Transformer</th>
+<th style="text-align: center;"><strong>Approche LLM Hybride</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -412,21 +394,21 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
 <!-- NOTE: Remplacez les placeholders par vos r&#xE9;sultats r&#xE9;els. -->
 <p>Des résultats en dessous de la méthode précédente expliqué par plusieurs facteurs</p>
 </section>
-<section id="analyse-qualitative" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Analyse Qualitative</h2>
+<section id="une-distribution-avec-une-bimodalité-très-marquée" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Une distribution avec une bimodalité très marquée</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de colonne bien extraite</figcaption>
-<p><a href="img/pct_col.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="distribution de la part de colonne bien extraite"><img data-src="img/pct_col.png" alt="distribution de la part de colonne bien extraite"></a></p>
+<p><a href="img/pct_col.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="distribution de la part de colonne bien extraite"><img data-src="img/pct_col.png" alt="distribution de la part de colonne bien extraite"></a></p>
 </figure>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de lignes bien extraite</figcaption>
-<p><a href="img/pct_row.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="distribution de la part de lignes bien extraite"><img data-src="img/pct_row.png" alt="distribution de la part de lignes bien extraite"></a></p>
+<p><a href="img/pct_row.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="distribution de la part de lignes bien extraite"><img data-src="img/pct_row.png" alt="distribution de la part de lignes bien extraite"></a></p>
 </figure>
 </div>
 </div></div>
@@ -440,26 +422,29 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de colonne bien extraite agrégée par SIREN</figcaption>
-<p><a href="img/pct_col_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="distribution de la part de colonne bien extraite agrégée par SIREN"><img data-src="img/pct_col_siren.png" alt="distribution de la part de colonne bien extraite agrégée par SIREN"></a></p>
+<p><a href="img/pct_col_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="distribution de la part de colonne bien extraite agrégée par SIREN"><img data-src="img/pct_col_siren.png" alt="distribution de la part de colonne bien extraite agrégée par SIREN"></a></p>
 </figure>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de lignes bien extraite agrégée par SIREN</figcaption>
-<p><a href="img/pct_row_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="distribution de la part de lignes bien extraite agrégée par SIREN"><img data-src="img/pct_row_siren.png" alt="distribution de la part de lignes bien extraite agrégée par SIREN"></a></p>
+<p><a href="img/pct_row_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="distribution de la part de lignes bien extraite agrégée par SIREN"><img data-src="img/pct_row_siren.png" alt="distribution de la part de lignes bien extraite agrégée par SIREN"></a></p>
 </figure>
 </div>
 </div></div>
 <p>La majorité des erreurs se concentre sur un petit nombre de documents particulièrement complexes, expliquant la baisse des moyennes globales.</p>
-</section></section>
-<section>
-<section id="perspectives" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Perspectives</h1>
-
 </section>
-<section id="pistes-damélioration" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Pistes d’Amélioration</h2>
+<section id="conséquence-opérationnelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Conséquence opérationnelles</h2>
+<ul>
+<li>Impossibilité d’integration <span class="orange"><strong>100% automatisée</strong></span></li>
+<li>Mais une détection des <span class="orange"><strong>extractions fausses</strong></span> envisageable</li>
+<li>On peut penser “faire confiance” au pipeline sur <span class="orange"><strong>certains cas</strong></span> et laisser l’expertise des profileurs pour d’autres</li>
+</ul>
+</section>
+<section id="perspectives" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Perspectives</h2>
 <ul>
 <li><span class="orange"><strong>Pistes pour le Modèle</strong></span>
 <ul>
@@ -668,7 +653,7 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -742,13 +727,14 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

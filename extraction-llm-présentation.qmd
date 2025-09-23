@@ -24,44 +24,15 @@ execute:
 
 # Le Contexte : le travail de profilage à l'INSEE
 
-## La division Profilage (PTGU)
-
-- Le stage s'est déroulé au sein de la division « **P**rofilage et **T**raitement des **G**randes **U**nités ».
-- Mission : [**Consolider et analyser**]{.orange} les structures des grands groupes d’entreprises.
-- Le **profilage** vise à définir une [**entreprise**]{.blue2} au sens économique, et non plus seulement juridique (Unité Légale - UL).
-
-## Pourquoi le profilage est essentiel ?
-
-Avant le profilage, l'agrégation simple des Unités Légales (UL) masquait la réalité économique :
-
-- Les [**flux intra-groupe**]{.orange} pouvaient gonfler artificiellement le chiffre d’affaires agrégé.
-- L'approche purement juridique créait des [**ruptures de séries**]{.orange} lors des restructurations.
-
-![source : insee.fr](img/fluxintra.png){width="25%" class="lightbox"}
-
-L'objectif est de garantir la [**cohérence et la continuité**]{.blue2} des agrégats économiques.
-
-## Le profilage manuel (Cible 1)
-
-Pour les plus grands groupes (~60), le travail des profileurs est un processus en 5 étapes clés :
-
-1.  Sélection des UL et envoi de l’enquête ESA.
-2.  [**Collecte des périmètres**]{.blue2} via visites et échanges.
-3.  [**Construction des comptes consolidés**]{.blue2} (retraitements, ajustements bilanciels).
-4.  [**Contrôles de cohérence**]{.blue2} avec de multiples sources (liasses fiscales, rapports annuels...).
-5.  Intégration dans la base Esane.
+## Le profilage : c'est quoi ?
+Le [**profilage**]{.orange} vise à définir une [**entreprise**]{.orange} au sens économique, et non plus seulement juridique (Unité Légale - UL).
+![source : formation crédit : Mhenni BEN YAALA](img/groupes.png){width="100%" class="lightbox"}
 
 # La Problématique : l'extraction du tableau "Filiales et Participations"
 
 ## Une source d'information cruciale
 
-- Au cœur des contrôles de cohérence se trouve le tableau "**Filiales et Participations**".
-- Il est essentiel pour [**vérifier les contours des groupes**]{.orange}.
-- Aujourd'hui, son exploitation est [**entièrement manuelle**]{.orange} : le profileur lit le PDF et recopie les informations.
-
-## Le défi technique
-
-L'automatisation de l'extraction est difficile car les documents sont très hétérogènes.
+- La construction des contours repose en grande partie sur les [**comptes sociaux**]{.orange} dans le tableau"**Filiales et Participations**".
 
 :::: {.columns}
 
@@ -75,7 +46,7 @@ L'automatisation de l'extraction est difficile car les documents sont très hét
 
 ::::
 
-Le but est de passer [**automatiquement**]{.blue2} du document brut à une table de données propre.
+Le but est de passer [**automatiquement**]{.orange} du document brut à une table de données propre.
 
 # Les Données : un corpus hétérogène
 
@@ -106,7 +77,7 @@ Le but est de passer [**automatiquement**]{.blue2} du document brut à une table
 
 Cette hétérogénéité rend les [**approches algorithmiques classiques peu robustes**]{.blue2}.
 
-# L'approche précédente : une méthode séquentielle
+# L'approche précédente
 
 ## Le pipeline
 
@@ -121,19 +92,35 @@ C'est l'approche [**Table Transformer**]{.orange} qui a été retenue, formant l
 
 # Rupture Technologique : Les LLMs
 
-## Comment un LLM "comprend" le texte ?
+## Un point de départ de NLP
 
 La première étape est de transformer les mots en nombres que le modèle peut manipuler.
 
 1.  [**Tokenisation**]{.orange}  
     Le texte est découpé en unités de base, les *tokens* (mots ou sous-mots).
-    `"Extraire ce tableau"` ➡️ `["Extraire", "ce", "tableau"]`
+    `"Extraire ce tableau"` ➡️ `["Extraire", "ce", "tableau"]` \n
+    `"anticonstitutionnel" ➡️ [anti][constitution][nel]`
 
-2.  [**Vectorisation (Embedding)**]{.orange}  
-    Chaque token est associé à un vecteur numérique de grande dimension. Ce vecteur représente la **position sémantique** du token dans un espace de concepts.
-    `"Extraire"` ➡️ `[0.12, -0.45, ..., 0.88]`
+## Un point de départ de NLP
+
+::: {.columns}
+
+::: {.column width="60%"}
+2. [**Vectorisation (Embedding)**]{.orange}  
+
+Chaque token est associé à un vecteur numérique de grande dimension.  
+Ce vecteur représente la **position sémantique** du token dans un espace de concepts.  
+
+`"Extraire"` ➡️ `[0.12, -0.45, ..]`
 
 Les mots aux significations proches auront des vecteurs proches dans cet espace.
+:::
+
+::: {.column width="40%"}
+![Source : Wikipedia Word2Vec (eng)](img/Word_vector_illustration-1.png){.lightbox}
+:::
+
+:::
 
 ## Le cœur du LLM : l'Architecture Transformer
 
@@ -149,11 +136,11 @@ Ce processus reste [**purement textuel et "aveugle"**]{.blue2} à la mise en pag
 
 Comment apprendre à un modèle de langage à "voir" ?
 
-La réponse méthodologique : [**traiter l'image comme une séquence de tokens**]{.blue2}, de la même manière que le texte.
+La réponse méthodologique : [**traiter l'image comme une séquence de tokens**]{.orange}, de la même manière que le texte.
 
-- On ne donne pas au modèle une grille de pixels, mais une séquence de **"tokens visuels"**.
+- On ne donne pas au modèle une grille de pixels, mais une séquence de [**"tokens visuels"**]{.orange}.
 - Chaque token visuel représente une petite zone de l'image.
-- Le modèle peut alors appliquer son mécanisme d'attention sur une **séquence mixte** de tokens de texte et de tokens visuels.
+- Le modèle peut alors appliquer son mécanisme d'attention sur une [**séquence mixte**]{.orange} de tokens de texte et de tokens visuels.
 
 ## La "Tokenisation Visuelle" en pratique
 
@@ -168,11 +155,11 @@ Le processus se fait en 3 étapes clés :
 3.  [**Séquençage**]{.orange}  
     Le LLM traite alors cette nouvelle **séquence de tokens visuels** comme il le ferait pour une phrase.
 
-# Mon Approche : Une Architecture Robuste et Hybride
+# Pipeline développé
 
-## Architecture en Microservices
+## Architecture
 
-Pour garantir la robustesse et la scalabilité, la solution est bâtie sur une architecture en 3 microservices.
+La solution est bâtie sur une architecture en 3 API.
 
 
 <!-- NOTE: Intégrez ici votre schéma d'architecture montrant API Centrale, API Marker, Proxy et les flux. -->
@@ -219,11 +206,13 @@ Le processus complet, orchestré par l'API Centrale, est donc le suivant :
     - Taux de cellules numériques correctement extraites [**\***]{.orange}
     - Taux d'extraction parfaite (tableau 100% correct) [**\***]{.orange}
 
+[**\***]{.orange} Métriques qui ont changé entre les projets et qui sont complexes à analyser
+
 # Résultats
 
-## Résultats Quantitatifs {.smaller}
+## Résultats bruts {.smaller}
 
-| Métrique | M1 (Table Transformer) | **Approche LLM (Hybride)** |
+| Métrique | Table Transformer | **Approche LLM Hybride** |
 |:---|:---:|:---:|
 | Taux moyen de colonnes extraites| .80 | **.71** |
 | Taux moyen de lignes extraites| .76 | **.70** |
@@ -234,8 +223,7 @@ Le processus complet, orchestré par l'API Centrale, est donc le suivant :
 
 Des résultats en dessous de la méthode précédente expliqué par plusieurs facteurs
 
-## Analyse Qualitative
-
+## Une distribution avec une bimodalité très marquée
 :::: {.columns}
 
 ::: {.column width="45%"}
@@ -269,9 +257,13 @@ Médiane : colonnes 86% -	lignes 92%
 
 La majorité des erreurs se concentre sur un petit nombre de documents particulièrement complexes, expliquant la baisse des moyennes globales.
 
-# Perspectives
+## Conséquence opérationnelles
 
-## Pistes d'Amélioration
+- Impossibilité d'integration [**100% automatisée**]{.orange}
+- Mais une détection des [**extractions fausses**]{.orange} envisageable
+- On peut penser "faire confiance" au pipeline sur [**certains cas**]{.orange} et laisser l'expertise des profileurs pour d'autres
+
+## Perspectives
 
 - [**Pistes pour le Modèle**]{.orange}
     - [**Fine-tuning**]{.blue2} : Envisageable à long terme si un corpus d'annotation conséquent est constitué, mais coûteux.
