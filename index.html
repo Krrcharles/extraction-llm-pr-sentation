@@ -202,7 +202,7 @@ Charles CARRERE
 <h2>Exemples de documents</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
-<p><strong>Structure complexe</strong> <a href="img/pdf_wtf_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="PDF numérique"><img data-src="img/pdf_wtf_2.png" alt="PDF numérique"></a></p>
+<p><strong>Structure complexe</strong> <a href="img/pdf_wtf_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="PDF complexe"><img data-src="img/pdf_wtf_2.png" alt="PDF complexe"></a></p>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:45%;">
@@ -237,8 +237,12 @@ Charles CARRERE
 <h2>Un point de départ de NLP</h2>
 <p>La première étape est de transformer les mots en nombres que le modèle peut manipuler.</p>
 <ol type="1">
-<li><span class="orange"><strong>Tokenisation</strong></span><br>
-Le texte est découpé en unités de base, les <em>tokens</em> (mots ou sous-mots). <code>"Extraire ce tableau"</code> ➡️ <code>["Extraire", "ce", "tableau"]</code> <code>"anticonstitutionnel" ➡️ [anti][constitution][nel]</code></li>
+<li><span class="orange"><strong>Tokenisation</strong></span>
+<ul>
+<li>Le texte est découpé en unités de base, les <em>tokens</em> (mots ou sous-mots).</li>
+<li><code>"Extraire ce tableau"</code> ➡️ <code>["Extraire", "ce", "tableau"]</code> </li>
+<li><code>"anticonstitutionnel" ➡️ [anti][constitution][nel]</code></li>
+</ul></li>
 </ol>
 </section>
 <section id="un-point-de-départ-de-nlp-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -313,7 +317,7 @@ Le LLM traite alors cette nouvelle <strong>séquence de tokens visuels</strong> 
 <img data-src="img/archi%20LF.excalidraw(1).png" class="r-stretch"></section>
 <section id="focus-sur-marker-pdf-une-approche-hybride" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Focus sur <code>marker-pdf</code> : une Approche Hybride</h2>
-<p>L’approche de la librairie <code>marker-pdf</code> est en plusieurs temps :</p>
+<p>L’approche de la librairie <code>marker-pdf</code> est en plusieurs temps:</p>
 <ol type="1">
 <li><p><span class="blue2"><strong>Segmentation rapide par vision (<code>Surya</code>)</strong></span><br>
 Un modèle spécialisé délimite les blocs de contenu (tableaux, textes…).</p></li>
@@ -323,6 +327,15 @@ Une première version du tableau est générée (OCR si besoin).</p></li>
 Le LLM affine cette première version en la comparant à l’image.</p></li>
 </ol>
 <p>Résultat : une combinaison de la <span class="orange"><strong>vitesse</strong></span> des modèles spécialisés et de la <span class="orange"><strong>précision</strong></span> du LLM.</p>
+</section>
+<section id="exemple-dappel-llm" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Exemple d’appel LLM</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><a href="img/ex_ocr_full.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="img/ex_ocr_full.webp"></a></p>
+</div><div class="column" style="width:60%;">
+<p><a href="img/ex_ocr.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="img/ex_ocr.webp"></a> <a href="img/ex_prompt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="img/ex_prompt.png"></a></p>
+</div></div>
 </section>
 <section id="le-pipeline-de-traitement-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Le Pipeline de Traitement Global</h2>
@@ -401,14 +414,14 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de colonne bien extraite</figcaption>
-<p><a href="img/pct_col.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="distribution de la part de colonne bien extraite"><img data-src="img/pct_col.png" alt="distribution de la part de colonne bien extraite"></a></p>
+<p><a href="img/pct_col.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="distribution de la part de colonne bien extraite"><img data-src="img/pct_col.png" alt="distribution de la part de colonne bien extraite"></a></p>
 </figure>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de lignes bien extraite</figcaption>
-<p><a href="img/pct_row.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="distribution de la part de lignes bien extraite"><img data-src="img/pct_row.png" alt="distribution de la part de lignes bien extraite"></a></p>
+<p><a href="img/pct_row.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="distribution de la part de lignes bien extraite"><img data-src="img/pct_row.png" alt="distribution de la part de lignes bien extraite"></a></p>
 </figure>
 </div>
 </div></div>
@@ -422,14 +435,14 @@ Le LLM affine cette première version en la comparant à l’image.</p></li>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de colonne bien extraite agrégée par SIREN</figcaption>
-<p><a href="img/pct_col_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="distribution de la part de colonne bien extraite agrégée par SIREN"><img data-src="img/pct_col_siren.png" alt="distribution de la part de colonne bien extraite agrégée par SIREN"></a></p>
+<p><a href="img/pct_col_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="distribution de la part de colonne bien extraite agrégée par SIREN"><img data-src="img/pct_col_siren.png" alt="distribution de la part de colonne bien extraite agrégée par SIREN"></a></p>
 </figure>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <figcaption>distribution de la part de lignes bien extraite agrégée par SIREN</figcaption>
-<p><a href="img/pct_row_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="distribution de la part de lignes bien extraite agrégée par SIREN"><img data-src="img/pct_row_siren.png" alt="distribution de la part de lignes bien extraite agrégée par SIREN"></a></p>
+<p><a href="img/pct_row_siren.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="distribution de la part de lignes bien extraite agrégée par SIREN"><img data-src="img/pct_row_siren.png" alt="distribution de la part de lignes bien extraite agrégée par SIREN"></a></p>
 </figure>
 </div>
 </div></div>

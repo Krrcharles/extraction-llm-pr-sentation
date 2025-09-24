@@ -97,9 +97,9 @@ C'est l'approche [**Table Transformer**]{.orange} qui a été retenue, formant l
 La première étape est de transformer les mots en nombres que le modèle peut manipuler.
 
 1.  [**Tokenisation**]{.orange}  
-    Le texte est découpé en unités de base, les *tokens* (mots ou sous-mots).
-    `"Extraire ce tableau"` ➡️ `["Extraire", "ce", "tableau"]` \n
-    `"anticonstitutionnel" ➡️ [anti][constitution][nel]`
+    - Le texte est découpé en unités de base, les *tokens* (mots ou sous-mots).
+    - `"Extraire ce tableau"` ➡️ `["Extraire", "ce", "tableau"]` \n
+    - `"anticonstitutionnel" ➡️ [anti][constitution][nel]`
 
 ## Un point de départ de NLP
 
@@ -173,7 +173,7 @@ La solution est bâtie sur une architecture en 3 API.
 
 ## Focus sur `marker-pdf` : une Approche Hybride
 
-L'approche de la librairie `marker-pdf` est en plusieurs temps :
+L'approche de la librairie `marker-pdf` est en plusieurs temps:
 
 1.  [**Segmentation rapide par vision (`Surya`)**]{.blue2}  
     Un modèle spécialisé délimite les blocs de contenu (tableaux, textes...).
@@ -185,6 +185,21 @@ L'approche de la librairie `marker-pdf` est en plusieurs temps :
     Le LLM affine cette première version en la comparant à l'image.
 
 Résultat : une combinaison de la [**vitesse**]{.orange} des modèles spécialisés et de la [**précision**]{.orange} du LLM.
+
+## Exemple d'appel LLM
+
+::: {.columns}
+
+::: {.column width="40%"} 
+![](img/ex_ocr_full.webp){.lightbox}
+:::
+
+::: {.column width="60%"}
+![](img/ex_ocr.webp){.lightbox}
+![](img/ex_prompt.png){.lightbox}
+:::
+
+:::
 
 ## Le Pipeline de Traitement Global
 
