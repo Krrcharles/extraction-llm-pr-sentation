@@ -61,8 +61,8 @@ Le but est de passer [**automatiquement**]{.orange} du document brut à une tabl
 :::: {.columns}
 
 ::: {.column width="45%"}
-**Structure originale**
-![PDF numérique](img/pdf_wtf_2.png){class="lightbox"}
+**Structure complexe**
+![PDF complexe](img/pdf_wtf_2.png){class="lightbox"}
 :::
 
 ::: {.column width="5%"}
@@ -75,7 +75,7 @@ Le but est de passer [**automatiquement**]{.orange} du document brut à une tabl
 
 ::::
 
-Cette hétérogénéité rend les [**approches algorithmiques classiques peu robustes**]{.blue2}.
+Cette hétérogénéité rend les [**approches algorithmiques classiques**]{.blue2} [**peu robustes**]{.orange}.
 
 # L'approche précédente
 
